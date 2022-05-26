@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import List from './components/List'
+import Map from './components/Map'
+
+import apps from './data/NeRelog_apps.json'
+import clients from './data/NeRelog_clients.json'
 
 function App() {
+  const appsMapped = apps.map((item,i)=>{item.index = i;return item})
+  const clientsIdMapping = clients.reduce((acc, item) =>{
+      acc[item.id] = item.name
+      return acc
+  },{})
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <List apps={appsMapped} clients={clients} clientsIdMapping={clientsIdMapping}/>
+      <Map apps={appsMapped} clients={clients} clientsIdMapping={clientsIdMapping}/>
     </div>
   );
 }

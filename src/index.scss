@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
+}
+.List {
+  flex-basis: 25%;
+  max-width: 25%;
+  @media (max-width: 1024px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+.Map {
+  flex: 1 1 auto;
+  @media (max-width: 1024px) {
+    flex-basis: 100%;
+    max-width: 100%;
+    height: 60vmax;
+  }
+}
+
+.List{
+  height: 100vh;
+  overflow: auto;
+  &--container{
+      display: block;
+  }
+  @media (max-width: 1024px) {
+    height: 40vmax;
+  }
+}
+
+.map-container{
+  width: 100%;
+  height: 100%;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font-size: 12px;
+}
+
+
+.ListItem{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  right: 0;
+  &--row {
+      display: flex;
+      justify-content: space-between;
+  }
+  &--name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+  &--price {
+      color: #323232;
+  }
+  &--type {
+  }
+  &--inner {
+    padding: 8px 5px;
+    position: relative;
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: rgba(0, 0, 0, 0.2);
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
