@@ -14,6 +14,7 @@ export default class List extends React.Component {
             last: 0,
             scrollTop: 0,
             itemHeight: 60,
+            overscan: 5
         }
         this.handleScroll = this.handleScroll.bind(this);
         this.handleResize = this.handleResize.bind(this);
@@ -25,10 +26,12 @@ export default class List extends React.Component {
     handleScroll(){
         const scrollTop = this.listRef.current.scrollTop
         const first = Math.floor(scrollTop / this.state.itemHeight)
-        const last = first + Math.ceil(parseInt(this.listRef.current.clientHeight, 10) / this.state.itemHeight)
+        const itemsQty = Math.ceil(parseInt(this.listRef.current.clientHeight, 10) / this.state.itemHeight)
+        const last = Math.min(first + itemsQty + this.state.overscan, this.props.apps.length)
+        
         this.setState({
             scrollTop,
-            first,
+            first: Math.max(first - this.state.overscan, 0),
             last
         })
     }
